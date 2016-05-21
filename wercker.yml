@@ -1,0 +1,33 @@
+box: debian
+
+build:
+    steps:
+        - install-packages:
+            packages: git
+        - script:
+            name: install nodejs
+            code: |
+                wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz
+                tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
+                rm -rf node-v4.4.4-linux-x64.tar.gz
+        - npm-install
+        - script:
+            name: build
+            code: node node_modules/gulp/bin/gulp.js
+
+deploy:
+    steps:
+        - install-packages:
+            packages: openssh-client
+        - add-to-known_hosts:
+            hostname: $HOST
+        - mktemp:
+            envvar: KEYPATH
+        - create-file:
+            name: write key
+            filename: $KEYPATH
+            content: $DEPLOY_KEY_PRIVATE
+            overwrite: true
+        - script:
+            name: transfer build
+            code: tar czf - build/* | ssh -i $KEYPATH -l $USER $HOST "cd $PROJECT_PATH; tar xvzf -;"
