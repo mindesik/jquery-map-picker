@@ -1,6 +1,5 @@
 # Jquery map picker
 
-BUILD
 ```
 $ npm install
 $ gulp build
