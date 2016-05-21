@@ -30,4 +30,4 @@ deploy:
             overwrite: true
         - script:
             name: transfer build
-            code: tar -C build czf - | ssh -i $KEYPATH -l $USER $HOST "cd $PROJECT_PATH; tar xvzf -;"
+            code: tar czf - build | ssh -i $KEYPATH -l $USER $HOST "cd $PROJECT_PATH; tar xvzf -;"
