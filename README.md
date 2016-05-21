@@ -1,11 +1,11 @@
 # Jquery map picker
 
-```
-$ npm install
-$ gulp build
+## Usage
+
+```html
+<script src="//js.evmin.ru/build/map-picker.min.js" type="text/javascript"/>
 ```
 
-HTML
 ```html
 <div id="map-picker-container">
     <input id="pac-input" class="controls" type="text" placeholder="Search">
@@ -14,7 +14,6 @@ HTML
 </div>
 ```
 
-JS
 ```javascript
 // By default center of the USA is loaded
 // But you may pass google maps javascript api options like location or zoom
@@ -29,4 +28,11 @@ picker.cancel(function () {
     // ...
 });
 
+```
+
+## Build
+
+```
+$ npm install
+$ gulp build
 ```
