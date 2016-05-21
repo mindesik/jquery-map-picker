@@ -10,6 +10,9 @@ build:
                 wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz
                 tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
                 rm -rf node-v4.4.4-linux-x64.tar.gz
+        - script:
+            name: install coffee
+            code: npm install -g coffee-script
         - npm-install
         - script:
             name: build
