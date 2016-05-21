@@ -1,15 +1,7 @@
-box: debian
+box: node:4.4.4-slim
 
 build:
     steps:
-        - install-packages:
-            packages: git wget
-        - script:
-            name: install nodejs
-            code: |
-                wget https://nodejs.org/download/release/v4.4.4/node-v4.4.4-linux-x64.tar.gz
-                tar -C /usr/local --strip-components 1 -xzf node-v4.4.4-linux-x64.tar.gz
-                rm -rf node-v4.4.4-linux-x64.tar.gz
         - npm-install
         - script:
             name: build
