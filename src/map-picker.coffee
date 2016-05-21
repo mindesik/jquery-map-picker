@@ -1,8 +1,6 @@
-###*
 # Map picker class
 # @param object container [Selector for map]
 # @param object config [Configuration object]
-###
 
 class MapPicker
     constructor: (@container, @config) ->
@@ -21,26 +19,20 @@ class MapPicker
         
         do @init
 
-    ###*
     # Define callback function for use button click
     # @param function callback [callback function]
     # @return MapPicker [return self for method chaining]
-    ###
 
     use: (@useCb) -> @
 
-    ###*
     # Define callback function for cancel button click
     # @param function callback [callback function]
     # @return MapPicker [return self for method chaining]
-    ###
 
     cancel: (@cancelCb) -> @
 
-    ###*
     # Initialize map object
     # @return void
-    ###
 
     init: ->
         # Initialize google maps
@@ -60,10 +52,8 @@ class MapPicker
         @container.on 'click', '.map-close', =>
             do @cancelCb if @cancelCb
 
-    ###*
     # Add search box input to map
     # @return void
-    ###
 
     addSearchBox: ->
         input = document.getElementById('pac-input')
@@ -96,11 +86,9 @@ class MapPicker
             
             @map.fitBounds bounds
 
-    ###*
     # Add marker on map when clicked
     # @param LatLng location
     # @return void
-    ###
 
     setMarker: (location) ->
         @marker.setMap null if @marker
@@ -113,11 +101,9 @@ class MapPicker
         
         @marker.setMap @map
 
-    ###*
     # Convert geolocation to address
     # @param    LatLng location
     # @return void
-    ###
 
     geocode: (location) ->
         @container.block
@@ -141,10 +127,8 @@ class MapPicker
             @container.unblock()
             @fillAddressCard()
 
-    ###*
     # Fill address card
     # @return void
-    ###
 
     fillAddressCard: ->
         $container = @container.find('.map-address')
@@ -159,10 +143,8 @@ class MapPicker
                 $container.append $('<address><strong>' + label + '</strong> (' + place.type + ')<br>' + place.long_name + short_name + '</address>')
         @toggleControls()
 
-    ###*
     # Show or hide use and cancel buttons
     # @return void
-    ###
 
     toggleControls: ->
         if @address.length is 0
@@ -170,10 +152,8 @@ class MapPicker
         else
             @container.find('.map-use-controls').removeClass 'hide'
 
-###*
 # jQuery plugin call
 # @param object config [Configuration object]
 # @return void
-###
 
 $.fn.mapPicker = (config) -> new MapPicker(this, config)
