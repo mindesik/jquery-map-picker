@@ -3,7 +3,7 @@ box: debian
 build:
     steps:
         - install-packages:
-            packages: git
+            packages: git wget
         - script:
             name: install nodejs
             code: |
